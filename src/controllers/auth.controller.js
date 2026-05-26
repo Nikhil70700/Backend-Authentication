@@ -7,11 +7,20 @@ async function registerUser(req, res) {
 
         const { username, email, password } = req.body;
 
+        const isUserAlreadyPresent = await usermodel.findOne({
+            email
+        });
+        if (isUserAlreadyPresent) {
+            return res.status(409).json({
+                message: "User with this email already exists"});
+        }
+
         const user = new usermodel({
             username,
             email,
             password
         });
+
 
         await user.save();
 
