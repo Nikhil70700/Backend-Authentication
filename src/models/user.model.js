@@ -7,6 +7,12 @@ const userSchema = new mongoose.Schema({
         unique:true,
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     },
+    mobileno:{
+        type:Number,
+        unique:true,
+        match: /^\d{10}$/
+
+    },
     password:String
 })
 
